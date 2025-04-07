@@ -10,6 +10,17 @@ public class UntilledSoil extends Item{
     }
 
     /**
+     * copy constructor
+     * @param untilledSoil untilledSoil
+     */
+    public UntilledSoil(UntilledSoil untilledSoil){
+        setAge(untilledSoil.getAge());
+        setMaturationAge(untilledSoil.getMaturationAge());
+        setDeathAge(untilledSoil.getDeathAge());
+        setMonetaryValue(untilledSoil.getMonetaryValue());
+    }
+
+    /**
      * override the function make it never die
      */
     public void tick(){
@@ -24,5 +35,10 @@ public class UntilledSoil extends Item{
     @Override
     public String toString() {
         return "/";
+    }
+
+    @Override
+    public Item clone() {
+        return new UntilledSoil(this);
     }
 }

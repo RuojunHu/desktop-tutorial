@@ -53,7 +53,7 @@ public abstract class Item {
      * @return monetary value
      */
     public int getValue(){
-        if(age>=maturationAge) return monetaryValue;
+        if(age>=maturationAge&&age<deathAge) return monetaryValue;
         return 0;
     }
 
@@ -77,6 +77,7 @@ public abstract class Item {
      * @return string of item
      */
     public abstract String toString();
+    public abstract Item clone();
 
     public int getMaturationAge() {
         return maturationAge;

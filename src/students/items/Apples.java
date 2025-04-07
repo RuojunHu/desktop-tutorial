@@ -12,6 +12,18 @@ public class Apples extends Food{
         setMonetaryValue(3);
         setDeathAge(5);
     }
+
+    /**
+     * copy constructor
+     * @param apples apples
+     */
+    public Apples(Apples apples){
+        setAge(apples.getAge());
+        setMaturationAge(apples.getMaturationAge());
+        setDeathAge(apples.getDeathAge());
+        setMonetaryValue(apples.getMonetaryValue());
+    }
+
     /**
      * an abstract function implemented by subclasses returning the string representation of each item.
      *
@@ -21,6 +33,12 @@ public class Apples extends Food{
     public String toString() {
         return null;
     }
+
+    @Override
+    public Item clone() {
+        return new Apples(this);
+    }
+
     /**
      * the total number of apple objects that have been instantiated
      * @return total number of grain objects

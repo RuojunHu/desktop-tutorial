@@ -14,6 +14,17 @@ public class Grain extends Food{
     }
 
     /**
+     * copy constructor
+     * @param grain grain
+     */
+    public Grain(Grain grain){
+        setAge(grain.getAge());
+        setMaturationAge(grain.getMaturationAge());
+        setDeathAge(grain.getDeathAge());
+        setMonetaryValue(grain.getMonetaryValue());
+    }
+
+    /**
      * an abstract function implemented by subclasses returning the string representation of each item.
      * @return string of item
      */
@@ -21,6 +32,11 @@ public class Grain extends Food{
     public String toString() {
         if(getAge()>=getMaturationAge()) return "A";
         return "a";
+    }
+
+    @Override
+    public Item clone() {
+        return new Grain(this);
     }
 
     /**

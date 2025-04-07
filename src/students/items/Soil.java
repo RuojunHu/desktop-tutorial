@@ -11,6 +11,17 @@ public class Soil extends Item{
     }
 
     /**
+     * copy constructor
+     * @param soil soil
+     */
+    public Soil(Soil soil){
+        setAge(soil.getAge());
+        setMaturationAge(soil.getMaturationAge());
+        setDeathAge(soil.getDeathAge());
+        setMonetaryValue(soil.getMonetaryValue());
+    }
+
+    /**
      * override the function make it never die
      */
     public void tick(){
@@ -25,5 +36,10 @@ public class Soil extends Item{
     @Override
     public String toString() {
         return ".";
+    }
+
+    @Override
+    public Item clone() {
+        return new Soil(this);
     }
 }

@@ -1,10 +1,7 @@
 package students;
 
 
-import students.items.Item;
-import students.items.Soil;
-import students.items.UntilledSoil;
-import students.items.Weed;
+import students.items.*;
 
 public class Field {
     private Item[][] items;
@@ -71,7 +68,7 @@ public class Field {
 	 * @return a copy of item
 	 */
 	public Item get(int x,int y){
-
+		return items[x][y].clone();
 	}
 
 	/**
@@ -96,5 +93,49 @@ public class Field {
 			}
 		}
 		return sum;
+	}
+
+	/**
+	 * returns a string representing the quantities and overall value of the field.
+	 * @return a string
+	 */
+	public String getSummery(){
+		StringBuffer sb=new StringBuffer();
+		int appleNumber=0;
+		int appleCreate=0;
+		int grainNumber=0;
+		int grainCreate=0;
+		int value=0;
+		int soilNumber=0;
+		int untilledSoilNumber=0;
+		int weedNumber=0;
+		for(int i=0;i< items.length;i++){
+			for(int j=0;j<items[i].length;j++) {
+				if(items[i][j] instanceof Apples){
+					appleNumber++;
+					if(items[i][j].getValue()>0) appleCreate++;
+					value+=items[i][j].getValue();
+				}else if(items[i][j] instanceof Grain){
+					grainNumber++;
+					if(items[i][j].getValue()>0) grainCreate++;
+					value+=items[i][j].getValue();
+				}else if(items[i][j] instanceof Soil){
+					soilNumber++;
+				}else if(items[i][j] instanceof UntilledSoil){
+					untilledSoilNumber++;
+				}else{
+					weedNumber++;
+				}
+			}
+		}
+		sb.append(String.format("%10s","Apples: ")).append(appleNumber);
+		sb.append(String.format("%10s","Grain: ")).append(grainNumber);
+		sb.append(String.format("%10s","Soil: ")).append(soilNumber);
+		sb.append(String.format("%10s","UntilledSoid: ")).append(untilledSoilNumber);
+		sb.append(String.format("%10s","Weed: ")).append(weedNumber);
+		sb.append("For a total of $").append(value);
+		sb.append("Total apples created: ").append(appleCreate);
+		sb.append("Total grain created: ").append(grainCreate);
+		return sb.toString();
 	}
 }

@@ -9,6 +9,16 @@ public class Weed extends Item{
         super(Integer.MAX_VALUE,Integer.MAX_VALUE,-1);
     }
     /**
+     * copy constructor
+     * @param weed weed
+     */
+    public Weed(Weed weed){
+        setAge(weed.getAge());
+        setMaturationAge(weed.getMaturationAge());
+        setDeathAge(weed.getDeathAge());
+        setMonetaryValue(weed.getMonetaryValue());
+    }
+    /**
      * override the function make it never die
      */
     public void tick(){
@@ -22,5 +32,10 @@ public class Weed extends Item{
     @Override
     public String toString() {
         return "#";
+    }
+
+    @Override
+    public Item clone() {
+        return new Weed(this);
     }
 }
