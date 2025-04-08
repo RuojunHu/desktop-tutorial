@@ -7,7 +7,12 @@ public class Field {
     private Item[][] items;
 
     public Field(int height, int width) {
-        items = new Soil[height][width];
+        items = new Item[height][width];
+		for(int i=0;i<height;i++){
+			for(int j=0;j<width;j++){
+				items[i][j]=new Soil();
+			}
+		}
     }
 
 	/**
@@ -38,15 +43,15 @@ public class Field {
 		StringBuffer sb=new StringBuffer();
 		sb.append(" ");
 		for(int i=0;i< items[0].length;i++){
-			sb.append(" ").append(i).append(" ");
+			sb.append(" ").append(i+1).append(" ");
 		}
 		sb.append("\n");
 		for(int i=0;i< items.length;i++){
-			System.out.print(i);
+			sb.append(i+1);
 			for(int j=0;j< items[i].length;j++) {
 				sb.append(" ").append(items[i][j].toString()).append(" ");
 			}
-			sb.append("\n");
+			if(i!= items.length-1)sb.append("\n");
 		}
 		return sb.toString();
 	}

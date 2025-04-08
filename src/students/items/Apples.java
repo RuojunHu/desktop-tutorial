@@ -31,7 +31,8 @@ public class Apples extends Food{
      */
     @Override
     public String toString() {
-        return null;
+        if(getAge()>=getMaturationAge()) return "A";
+        return "a";
     }
 
     @Override

@@ -30,8 +30,8 @@ public class Grain extends Food{
      */
     @Override
     public String toString() {
-        if(getAge()>=getMaturationAge()) return "A";
-        return "a";
+        if(getAge()>=getMaturationAge()) return "G";
+        return "g";
     }
 
     @Override
