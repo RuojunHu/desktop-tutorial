@@ -5,8 +5,14 @@ import students.items.*;
 
 public class Field {
     private Item[][] items;
+	int grainCreate=0;
+	int tomatoCreate=0;
+	int appleCreate=0;
+	public Item[][] getItems() {
+		return items;
+	}
 
-    public Field(int height, int width) {
+	public Field(int height, int width) {
         items = new Item[height][width];
 		for(int i=0;i<height;i++){
 			for(int j=0;j<width;j++){
@@ -107,9 +113,10 @@ public class Field {
 	public String getSummery(){
 		StringBuffer sb=new StringBuffer();
 		int appleNumber=0;
-		int appleCreate=0;
+
 		int grainNumber=0;
-		int grainCreate=0;
+		int tomatoNumber=0;
+
 		int value=0;
 		int soilNumber=0;
 		int untilledSoilNumber=0;
@@ -128,19 +135,24 @@ public class Field {
 					soilNumber++;
 				}else if(items[i][j] instanceof UntilledSoil){
 					untilledSoilNumber++;
+				}else if(items[i][j] instanceof Tomato){
+					if(items[i][j].getValue()>0) tomatoCreate++;
+					tomatoNumber++;
 				}else{
 					weedNumber++;
 				}
 			}
 		}
-		sb.append(String.format("%10s","Apples: ")).append(appleNumber);
-		sb.append(String.format("%10s","Grain: ")).append(grainNumber);
-		sb.append(String.format("%10s","Soil: ")).append(soilNumber);
-		sb.append(String.format("%10s","UntilledSoid: ")).append(untilledSoilNumber);
-		sb.append(String.format("%10s","Weed: ")).append(weedNumber);
-		sb.append("For a total of $").append(value);
-		sb.append("Total apples created: ").append(appleCreate);
-		sb.append("Total grain created: ").append(grainCreate);
+		sb.append(String.format("%10s","Apples: ")).append(appleNumber).append("\n");
+		sb.append(String.format("%10s","Tomato: ")).append(tomatoNumber).append("\n");
+		sb.append(String.format("%10s","Grain: ")).append(grainNumber).append("\n");
+		sb.append(String.format("%10s","Soil: ")).append(soilNumber).append("\n");
+		sb.append(String.format("%10s","UntilledSoid: ")).append(untilledSoilNumber).append("\n");
+		sb.append(String.format("%10s","Weed: ")).append(weedNumber).append("\n");
+		sb.append("For a total of $").append(value).append("\n");
+		sb.append("Total apples created: ").append(appleCreate).append("\n");
+		sb.append("Total grain created: ").append(grainCreate).append("\n");
+		sb.append("Total tomato created: ").append(tomatoCreate).append("\n");
 		return sb.toString();
 	}
 }

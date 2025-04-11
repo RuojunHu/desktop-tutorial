@@ -3,6 +3,7 @@ package students;
 import students.items.Apples;
 import students.items.Grain;
 import students.items.Soil;
+import students.items.Tomato;
 
 import java.util.Scanner;
 
@@ -78,7 +79,8 @@ public class Farm {
                         if (field.get(x, y) instanceof Soil) {
                             System.out.println("Enter:\n" +
                                     " - 'a' to buy an apple for $2\n" +
-                                    " - 'g' to buy grain for $1");
+                                    " - 'g' to buy grain for $1\n"+
+                                    " - 't' to buy tomato for $3");
                             String bu = scanner.nextLine();
                             if (bu.equals("a")) {
                                 if (balance >= 2) {
@@ -91,6 +93,13 @@ public class Farm {
                                 if (balance >= 1) {
                                     field.plant(x, y, new Grain());
                                     balance -= 1;
+                                } else {
+                                    System.out.println("Insufficient Balance");
+                                }
+                            } else if (bu.equals("t")) {
+                                if (balance >= 3) {
+                                    field.plant(x, y, new Tomato(field.getItems()));
+                                    balance -= 3;
                                 } else {
                                     System.out.println("Insufficient Balance");
                                 }
@@ -107,8 +116,8 @@ public class Farm {
                         System.out.println(e.getMessage());
                     }
                 } else if (args[0].equals("s")) {
-					field.tick();
-                    System.out.println(field);
+                    field.tick();
+                    System.out.println(field.getSummery());
                 } else if (args[0].equals("w")) {
 					field.tick();
                     continue;
